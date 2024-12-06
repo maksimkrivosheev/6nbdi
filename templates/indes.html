@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Load Balancer</title>
+</head>
+<body>
+    <h1>Load Balancer</h1>
+    <form method="POST" action="/add_instance">
+        IP: <input type="text" name="ip"><br>
+        Port: <input type="text" name="port"><br>
+        <button type="submit">Add Instance</button>
+    </form>
+    <ul>
+        {% for instance in instances %}
+            <li>{{ instance.ip }}:{{ instance.port }} ({{ 'Healthy' if instance.healthy else 'Unhealthy' }})
+              <form method="POST" action="/remove_instance" style="display:inline;">
+                <input type="hidden" name="index" value="{{ loop.index0 }}">
+                <button type="submit">Remove</button>
+              </form>
+            </li>
+        {% endfor %}
+    </ul>
+</body>
+</html>
