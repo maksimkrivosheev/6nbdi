@@ -16,3 +16,4 @@ if __name__ == '__main__':
     import sys
     instance_id = sys.argv[1]
     app.run(port=int(sys.argv[2]))
+    

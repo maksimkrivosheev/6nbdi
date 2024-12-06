@@ -66,3 +66,6 @@ def remove_instance():
 if __name__ == '__main__':
     threading.Thread(target=check_health).start()
     app.run(port=5000)
+
+
+    
