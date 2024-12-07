@@ -11,7 +11,7 @@ current_index = 0
 def check_health():
     while True:
         global instances
-        for instance in instances[:]:  # Создаем копию списка для итерации
+        for instance in instances[:]: 
             try:
                 response = requests.get(f'http://{instance}/health')
                 if response.status_code != 200:
@@ -28,7 +28,7 @@ def health():
 def process():
     global current_index
     if not instances:
-        return jsonify({"error": "No available instances"}), 503
+        return jsonify({"error": "Нет инстансов"}), 503
     instance = instances[current_index]
     current_index = (current_index + 1) % len(instances)
     response = requests.get(f'http://{instance}/process')
@@ -51,15 +51,15 @@ def add_instance():
     ip = request.form['ip']
     port = request.form['port']
     instances.append(f'{ip}:{port}')
-    return jsonify({"status": "Instance added"}), 200
+    return jsonify({"status": "Добавлен"}), 200
 
 @app.route('/remove_instance', methods=['POST'])
 def remove_instance():
     index = int(request.form['index'])
     if 0 <= index < len(instances):
         instances.pop(index)
-        return jsonify({"status": "Instance removed"}), 200
-    return jsonify({"error": "Invalid index"}), 400
+        return jsonify({"status": "Удален"}), 200
+    return jsonify({"error": "Неправильный"}), 400
 
 if __name__ == '__main__':
     threading.Thread(target=check_health, daemon=True).start()

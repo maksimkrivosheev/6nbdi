@@ -1,14 +1,14 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title>Balancer UI</title>
+   
 </head>
 <body>
-    <h1>Instance Pool</h1>
+    
     <form method="POST" action="/add_instance">
         IP: <input type="text" name="ip"><br>
         Port: <input type="number" name="port"><br>
-        <button type="submit">Add Instance</button>
+        <button type="submit">Добавить</button>
     </form>
 
     <h2>Instances:</h2>
@@ -17,11 +17,10 @@
             <li>{{ instance_id }}: {{ instance_data.ip }}:{{ instance_data.port }} ({{ instance_data.status }})
                 <form method="POST" action="/remove_instance" style="display: inline;">
                     <input type="hidden" name="instance_id" value="{{ instance_id }}">
-                    <button type="submit">Remove</button>
+                    <button type="submit">Удалить</button>
                 </form>
             </li>
         {% endfor %}
     </ul>
 </body>
 </html>
-    
